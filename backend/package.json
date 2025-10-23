@@ -1,0 +1,40 @@
+{
+  "name": "telanix-backend",
+  "version": "1.0.0",
+  "description": "Backend API para TelaNix - Sistema de avaliação de filmes",
+  "main": "dist/index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "db:init": "node -e \"import('pg').then(async ({default: pg}) => { const client = new pg.Client({ connectionString: process.env.DATABASE_URL }); await client.connect(); const sql = require('fs').readFileSync('../db/init.sql', 'utf8'); await client.query(sql); await client.end(); console.log('Database initialized!'); })\""
+  },
+  "keywords": [
+    "telanix",
+    "movies",
+    "api",
+    "postgresql"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@types/bcryptjs": "^3.0.0",
+    "bcryptjs": "^3.0.2",
+    "compression": "^1.8.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "express-validator": "^7.0.1",
+    "pg": "^8.11.3"
+  },
+  "devDependencies": {
+    "@types/compression": "^1.8.1",
+    "@types/cors": "^2.8.17",
+    "@types/express": "^4.17.21",
+    "@types/node": "^20.10.6",
+    "@types/pg": "^8.10.9",
+    "tsx": "^4.7.0",
+    "typescript": "^5.3.3"
+  }
+}

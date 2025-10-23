@@ -1,0 +1,55 @@
+═══════════════════════════════════════════════════════
+   🎯 PASSO A PASSO SUPER SIMPLES - NÃO PULE NADA
+═══════════════════════════════════════════════════════
+
+PASSO 1: COPIAR O COMANDO COMPLETO
+───────────────────────────────────────────────────────
+
+1. Volte na página do Render (onde tem as conexões)
+2. Role até "Comando PSQL"
+3. O comando é GRANDE, tipo assim:
+
+   PGPASSWORD=a1b2c3d4e5f6 psql -h dpg-xxxxx.oregon-postgres.render.com -U telanix_db_user telanix_db
+
+4. Clique no ÍCONE DE COPIAR (📋) ao lado direito
+5. NÃO digite, só clique no ícone de copiar!
+
+
+PASSO 2: ABRIR POWERSHELL E COLAR
+───────────────────────────────────────────────────────
+
+1. Abra o PowerShell (Win + X → "Windows PowerShell")
+2. COLE o comando (Ctrl+V ou botão direito)
+3. Pressione ENTER
+4. Vai demorar uns segundos...
+5. Quando aparecer "telanix_db=>" significa que conectou! ✅
+
+
+PASSO 3: EXECUTAR O SQL
+───────────────────────────────────────────────────────
+
+1. Abra o arquivo SQL_PARA_COLAR.sql (está na pasta do projeto)
+2. Selecione TUDO (Ctrl+A)
+3. Copie TUDO (Ctrl+C)
+4. Volte pro PowerShell
+5. Cole (clique com botão direito do mouse)
+6. Pressione ENTER
+7. Vai rolar um monte de texto...
+8. No final deve aparecer: COMMIT ✅
+9. Digite: \q
+10. Pressione ENTER
+
+
+PASSO 4: COPIAR URL DO BANCO
+───────────────────────────────────────────────────────
+
+1. Volte na página do Render
+2. Procure "URL do banco de dados interno" (Internal Database URL)
+3. Clique no ícone de copiar (📋)
+4. Cole AQUI NO CHAT pra eu ver
+
+
+═══════════════════════════════════════════════════════
+   EM QUAL PASSO VOCÊ ESTÁ AGORA?
+═══════════════════════════════════════════════════════
+
