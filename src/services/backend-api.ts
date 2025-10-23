@@ -67,8 +67,11 @@ export const authApi = {
     })
 
     // Salvar user ID no localStorage para autenticação
-    if (response.success && response.data?.user?.id) {
-      localStorage.setItem('telanix-user-id', response.data.user.id)
+    if (response.success && response.data && typeof response.data === 'object') {
+      const data = response.data as any
+      if (data.user?.id) {
+        localStorage.setItem('telanix-user-id', data.user.id)
+      }
     }
 
     return response
