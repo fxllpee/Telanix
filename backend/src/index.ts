@@ -7,6 +7,7 @@ import cors from 'cors'                               // Permitir requisições 
 import compression from 'compression'                 // Comprimir respostas HTTP (economiza banda)
 import dotenv from 'dotenv'                          // Ler variáveis de ambiente (.env)
 import { pool } from './db/pool.js'                  // Pool de conexões com PostgreSQL
+import { initTables } from './db/init-tables.js'     // Criar tabelas no banco
 
 // IMPORTS: Rotas da API (cada arquivo gerencia um tipo de requisição)
 import authRoutes from './routes/auth.js'       // Rotas de autenticação (login, registro)
@@ -133,7 +134,7 @@ app.use((err: any, req: Request, res: Response, next: any) => {
 })
 
 // INICIAR SERVIDOR: Coloca o servidor online na porta especificada
-app.listen(PORT, () => {
+app.listen(PORT, async () => {
   console.log(`
 ╔═══════════════════════════════════════╗
 ║     🎬 TelaNix API Server 🎬         ║
@@ -144,6 +145,13 @@ app.listen(PORT, () => {
 ║  URL: http://localhost:${PORT}        ║
 ╚═══════════════════════════════════════╝
   `)
+  
+  // Criar tabelas no banco de dados (se não existirem)
+  try {
+    await initTables()
+  } catch (error) {
+    console.error('Erro ao inicializar tabelas, mas servidor continua rodando')
+  }
 })
 
 // GRACEFUL SHUTDOWN: Fechar servidor corretamente quando receber sinal de término
