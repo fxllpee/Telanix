@@ -1,0 +1,22 @@
+{
+  "name": "TelaNix",
+  "short_name": "TelaNix",
+  "description": "Descubra filmes incríveis, avalie e compartilhe opiniões sobre filmes",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#f5b500",
+  "icons": [
+    {
+      "src": "/logotelanix.jpeg",
+      "sizes": "192x192",
+      "type": "image/jpeg"
+    },
+    {
+      "src": "/logotelanix.jpeg",
+      "sizes": "512x512",
+      "type": "image/jpeg"
+    }
+  ]
+}
+
