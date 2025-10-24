@@ -6,6 +6,14 @@ import { body, validationResult } from 'express-validator'
 
 const router: Router = Router()
 
+// ⚠️ MODO DESENVOLVIMENTO: Usuários em memória (sem banco)
+const mockUsers = new Map<string, any>()
+const USE_MOCK_DB = !process.env.DATABASE_URL || process.env.USE_MOCK_DB === 'true'
+
+if (USE_MOCK_DB) {
+  console.log('⚠️ MODO MOCK: Usando banco de dados em memória (sem PostgreSQL)')
+}
+
 // POST /api/auth/register - Registrar novo usuário
 router.post(
   '/register',

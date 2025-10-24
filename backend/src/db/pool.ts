@@ -17,15 +17,20 @@ if (!DATABASE_URL) {
 }
 
 // Configuração do pool de conexões PostgreSQL
+// SSL sempre ativado para bancos remotos (Render, Supabase, etc)
+const useSSL = DATABASE_URL.includes('render.com') || DATABASE_URL.includes('supabase') || process.env.NODE_ENV === 'production'
+
 export const pool = new Pool({
   connectionString: DATABASE_URL,
-  ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false,
+  ssl: useSSL ? { rejectUnauthorized: false } : false,
   max: 20, // Máximo de conexões no pool
   min: 2, // Mínimo de conexões sempre ativas
   idleTimeoutMillis: 30000,
   connectionTimeoutMillis: 2000,
   maxUses: 7500, // Reciclar conexões após 7500 queries
 })
+
+console.log('🔐 SSL:', useSSL ? 'ATIVADO' : 'DESATIVADO')
 
 // Teste de conexão
 pool.on('connect', () => {
