@@ -36,7 +36,8 @@ app.use(express.urlencoded({ extended: true }))
 // Lista de origins (domínios) permitidos a fazer requisições
 const allowedOrigins = [
   process.env.FRONTEND_URL_DEV || 'http://localhost:8080',          // Desenvolvimento local
-  process.env.FRONTEND_URL_PROD || 'https://telanix.onrender.com', // Produção
+  process.env.FRONTEND_URL_PROD || 'https://telanix.onrender.com',  // Produção (antigo)
+  'https://telanix-frontend.onrender.com',                          // Produção (frontend atual)
   'http://localhost:5173',                                          // Vite porta alternativa
 ]
 
@@ -58,8 +59,15 @@ app.use(
       }
     },
     credentials: true, // Permitir envio de cookies
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'x-user-id'],
+    exposedHeaders: ['Content-Length', 'X-Request-Id'],
+    maxAge: 86400, // 24h de cache do preflight
   })
 )
+
+// Garantir resposta ao preflight OPTIONS para qualquer rota
+app.options('*', cors())
 
 // REGISTRAR ROTAS: Conectar arquivos de rotas com endpoints da API
 app.use('/api/auth', authRoutes)       // /api/auth/login, /api/auth/register
