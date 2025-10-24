@@ -5,9 +5,20 @@ dotenv.config()
 
 const { Pool } = pg
 
+// Debug: Verificar se a DATABASE_URL está sendo lida
+const DATABASE_URL = process.env.DATABASE_URL
+console.log('🔍 DATABASE_URL existe?', !!DATABASE_URL)
+console.log('🔍 NODE_ENV:', process.env.NODE_ENV)
+
+if (!DATABASE_URL) {
+  console.error('❌ ERRO FATAL: DATABASE_URL não está definida!')
+  console.error('❌ Variáveis disponíveis:', Object.keys(process.env).filter(k => k.includes('DATABASE')))
+  process.exit(1)
+}
+
 // Configuração do pool de conexões PostgreSQL
 export const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
+  connectionString: DATABASE_URL,
   ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false,
   max: 20, // Máximo de conexões no pool
   min: 2, // Mínimo de conexões sempre ativas
