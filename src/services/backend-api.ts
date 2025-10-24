@@ -30,12 +30,20 @@ async function fetchApi<T>(
       headers['x-user-id'] = userId
     }
 
-    const response = await fetch(`${API_BASE_URL}${endpoint}`, {
+    const fullUrl = `${API_BASE_URL}${endpoint}`
+    console.log('🔍 Fazendo requisição para:', fullUrl)
+    console.log('🔍 Método:', options.method || 'GET')
+    console.log('🔍 Body:', options.body)
+
+    const response = await fetch(fullUrl, {
       ...options,
       headers,
     })
 
+    console.log('📡 Status da resposta:', response.status)
+
     const data = await response.json()
+    console.log('📦 Dados recebidos:', data)
 
     if (!response.ok) {
       throw new Error(data.error || 'Erro na requisição')
@@ -43,7 +51,7 @@ async function fetchApi<T>(
 
     return data
   } catch (error) {
-    console.error('API Error:', error)
+    console.error('❌ API Error:', error)
     return {
       success: false,
       error: error instanceof Error ? error.message : 'Erro desconhecido',
