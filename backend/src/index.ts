@@ -35,10 +35,11 @@ app.use(express.urlencoded({ extended: true }))
 // MIDDLEWARE 4: CORS - permitir que o frontend acesse o backend
 // Lista de origins (domínios) permitidos a fazer requisições
 const allowedOrigins = [
-  process.env.FRONTEND_URL_DEV || 'http://localhost:8080',          // Desenvolvimento local
+  process.env.FRONTEND_URL_DEV || 'http://localhost:8083',          // Desenvolvimento local
   process.env.FRONTEND_URL_PROD || 'https://telanix.onrender.com',  // Produção (antigo)
   'https://telanix-frontend.onrender.com',                          // Produção (frontend atual)
   'http://localhost:5173',                                          // Vite porta alternativa
+  'http://localhost:8080',                                          // Vite porta alternativa local
 ]
 
 // Aplicar configuração CORS
@@ -144,14 +145,13 @@ app.use((err: any, req: Request, res: Response, next: any) => {
 // INICIAR SERVIDOR: Coloca o servidor online na porta especificada
 app.listen(PORT, async () => {
   console.log(`
-╔═══════════════════════════════════════╗
-║     🎬 TelaNix API Server 🎬         ║
-╠═══════════════════════════════════════╣
-║  Status: ✅ Rodando                   ║
-║  Porta: ${PORT}                       ║
-║  Ambiente: ${process.env.NODE_ENV || 'development'}           ║
-║  URL: http://localhost:${PORT}        ║
-╚═══════════════════════════════════════╝
+
+    🎬 TelaNix API Server 🎬         
+
+  Porta: ${PORT}                       
+  Ambiente: ${process.env.NODE_ENV || 'development'}           
+ URL: http://localhost:${PORT}       
+
   `)
   
   // Criar tabelas no banco de dados (se não existirem)

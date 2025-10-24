@@ -3,7 +3,7 @@
 
 const API_BASE_URL = import.meta.env.DEV 
   ? 'http://localhost:3001/api'
-  : 'https://telanix-api.onrender.com/api'
+  : 'https://telanix.onrender.com/api'
 
 interface ApiResponse<T = any> {
   success: boolean
