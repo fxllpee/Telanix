@@ -1,11 +1,12 @@
+// Equipe Telanix
 const teamMembers = [
-  'Felipe Rodrigues',
-  'Ana Clara',
-  'Miguel',
-  'Guilherme Matias',
-  'Guilherme Moia',
-  'Giovanna',
-  'Enzo',
+  'Felipe Rodrigues da Silva',
+  'Ana Clara Verardi dos Santos',
+  'Miguel de Brito Emmerick',
+  'Guilherme Matias dos Santos',
+  'Guilherme Moia de Oliveira',
+  'Giovanna de Albuquerque Lucio',
+  'Enzo Capellari',
 ]
 
 const AboutPage = () => {
